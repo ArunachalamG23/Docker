@@ -9,6 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
+      - cd Python-Application
       - docker build -t 503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest .
   post_build:
     commands:

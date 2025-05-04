@@ -5,15 +5,24 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 503561430633.dkr.ecr.ap-south-1.amazonaws.com
+
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
       - cd Python-Application
       - docker build -t 503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest .
+
   post_build:
     commands:
       - echo Pushing the Docker image...
       - docker push 503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest
+      - echo Generating imagedefinitions.json...
+      - echo '[ { "name": "python", "imageUri": "503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest" } ]' > imagedefinitions.json
       - echo Updating ECS Service...
+      - aws ecs update-service --cluster Python --service Python-service-eyt8n222 --force-new-deployment --image 503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest
+
+artifacts:
+  files:
+    - imagedefinitions.json
 

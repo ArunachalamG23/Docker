@@ -17,6 +17,7 @@ phases:
     commands:
       - echo Pushing the Docker image...
       - docker push 503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest
+      - cd ..
       - echo Generating imagedefinitions.json...
       - |
         echo '[

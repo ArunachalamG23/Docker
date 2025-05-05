@@ -18,9 +18,13 @@ phases:
       - echo Pushing the Docker image...
       - docker push 503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest
       - echo Generating imagedefinitions.json...
-      - echo '[ { "name": "python", "imageUri": "503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest" } ]' > imagedefinitions.json
-      - echo Updating ECS Service...
-      - aws ecs update-service --cluster Python --service Python-service-eyt8n222 --force-new-deployment --image 503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest
+      - |
+        echo '[
+          {
+            "name": "python",
+            "imageUri": "503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest"
+          }
+        ]' > imagedefinitions.json
 
 artifacts:
   files:

@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "Python:3"
+        TaskDefinition: "Python"
         LoadBalancerInfo:
           ContainerName: "Python"
           ContainerPort: 80

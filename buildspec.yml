@@ -21,7 +21,7 @@ phases:
       - |
         echo '[
           {
-            "name": "python",
+            "name": "Python",
             "imageUri": "503561430633.dkr.ecr.ap-south-1.amazonaws.com/python:latest"
           }
         ]' > imagedefinitions.json

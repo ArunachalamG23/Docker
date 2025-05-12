@@ -3,12 +3,8 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        Cluster: !Ref Python-cluster  # Optional if you're using a specific ECS cluster
-        ServiceName: Python-TD-service-hw167rbx
-        TaskDefinition: !Ref arn:aws:ecs:ap-south-1:503561430633:task-definition/Python-TD:4  # Use ECS Task Definition ARN or family + revision
+        TaskDefinition: "arn:aws:ecs:ap-south-1:503561430633:task-definition/Python-TD:4"
         LoadBalancerInfo:
-          LoadBalancerName: !Ref Python-ALB  # ALB name or NLB name (if using)
-          ContainerName: "Python"  # Container name defined in Task Definition
+          ContainerName: "Python"
           ContainerPort: 5000
-        Role: arn:aws:iam::aws:policy/aws-service-role/AmazonECSServiceRolePolicy
 
